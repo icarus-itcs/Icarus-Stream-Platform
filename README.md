@@ -1,6 +1,8 @@
 # 🎥 Icarus Stream Platform (ISP)
 Icarus Stream Platform (ISP) is a node-based RTMP light weight streaming portal. Built for small communities to share low to near zero latency streams together! Password protected streams are optional. There is zero maintence to get started, no databases, advanced authentication, etc. Use your favorite streaming tool such as OBS and get a stream up and running now!
 
+
+
 ## 🗃️ Features
 * Instant "on-the-go" streaming
 * No database setups
@@ -10,6 +12,8 @@ Icarus Stream Platform (ISP) is a node-based RTMP light weight streaming portal.
 * No maintenance 
 * Infinite Horizontal Scaling
 * Help section for the uninitiated on the homepage
+
+
 
 
 ## 💾 Installation
@@ -28,6 +32,8 @@ Icarus Stream Platform (ISP) is a node-based RTMP light weight streaming portal.
 8. Save changes
 9. `npm start`
 10. Go to `http://localhost:6969/`
+
+
 
 
 ## License
