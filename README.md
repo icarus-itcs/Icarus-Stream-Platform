@@ -40,6 +40,34 @@ Icarus Stream Platform (ISP) is a node-based RTMP light weight streaming portal.
 * 1935: RTMP
 
 
+## Example Configuration
+```
+{
+ "isp": {
+   "webport": 4700,
+   "title": "Icarus Stream Platform",
+   "motto": "Created by Miles Collier (Icarus), https://github.com/miles-collier/Icarus-Stream-Platform"
+ },
+ "rtmp": {
+   "port": 1935,
+   "chunk_size": 4096,
+   "gop_cache": false,
+   "ping": 60,
+   "ping_timeout": 30
+ },
+ "http": {
+   "port": 8000,
+   "allow_origin": "*"
+ },
+ "apiAuth": {
+   "access": true,
+   "apiKey": ""
+ }
+}
+```
+
+
+
 
 
 ## License
