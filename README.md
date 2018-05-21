@@ -21,17 +21,22 @@ Icarus Stream Platform (ISP) is a node-based RTMP light weight streaming portal.
 **🖥️ Requirements**
 * Node v8+
 
-**📜 Process**
+**📜 Manual Install**
 1. `git clone https://github.com/miles-collier/Icarus-Stream-Platform.git`
-2. `cd icarus-stream-platform`
+2. `cd Icarus-Stream-Platform`
 3. `npm install`
-4. Open `app.js` in your preferred text editor
-5. Edit `const domain = 'example.com'` to reflect your domain/IP.
-6. Edit config > apiAuth > secret from `example` to a choosen secret password. ⚠️ Important ⚠️
-7. (optional) Edit any other respective ports or settings.
-8. Save changes
-9. `npm start`
-10. Go to `http://localhost:6969/`
+4. `npm start`
+5. Go to `http://localhost:4700/`
+
+**🐳 Docker Install**
+1. `sudo docker pull icarus1/icarus-stream-platform`
+2. `sudo docker run -p 4700:4700 -p 1935:1935 -p 8000:8000 -d icarus1/icarus-stream-platform`
+3. Go to `http://localhost:4700`
+
+**Used Ports**
+* 4700: Web
+* 8000: API
+* 1935: RTMP
 
 
 
