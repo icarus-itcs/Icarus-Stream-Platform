@@ -35,6 +35,9 @@ Icarus Stream Platform (ISP) is a node-based RTMP light weight streaming portal.
 
 (Optional) Custom configuration file: `sudo docker run -d -v /path/to/config.json:/usr/src/app/config.json:rw -p 4700:4700 -p 1935:1935 -p 8000:8000 -d icarus1/icarus-stream-platform`
 
+⚠️ If you are using Docker and want to use non-default ports (listed below) the user helpsheet will not reflect the correct port for routing (e.g. rtmp). This will be fixed in a future version.
+
+
 **Used Ports**
 * 4700: Web
 * 8000: API
