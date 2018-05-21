@@ -3,38 +3,16 @@ const express = require('express');
 const app     = express();
 const path    = require('path');
 const request = require('request-promise');
+const config  = require('./config.json');
 
 
-/* Application Configuration */
-
-const domain = 'example.com';
-const webport = 6969;
-const config = {
-  rtmp: {
-    port: 1935,
-    chunk_size: 4096,
-    gop_cache: false,
-    ping: 60,
-    ping_timeout: 30
-  },
-  http: {
-    port: 8000,
-    allow_origin: '*'
-  },
-  apiAuth: {
-    access: true,
-    secret: 'example' // ADD A SECRET API KEY FOR INTERNAL USE - REQUIRED, DO NOT USE DEFAULT
-  }
-};
-
-
-/* ********************************************* */
-/* Only edit below if you know what you're doing */
-/* ********************************************* */
-
-
-
-
+// Generate a random API key if non-given
+if(!config.apiAuth.apiKey){
+  config.apiAuth.apiKey = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  console.log('[IMPORTANT] No API Key given, randomly assigned key (temporary): '+config.apiAuth.apiKey);
+} else {
+  console.log('Using provided API Key for access!')
+}
 
 
 // Start media server
@@ -49,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Grab the stream data (users, apps, etc)
 async function getApi(){
-  return request('http://' + domain + ':' + config.http.port + '/api/streams?apiKey='+config.apiAuth.secret);
+  return request('http://127.0.0.1:' + config.http.port + '/api/streams?apiKey='+config.apiAuth.secret);
 }
 
 
@@ -78,13 +56,14 @@ async function isOnline(name){
 
 /* Routes */
 app.get('/', async (req, res) => {
+  let host = req.get('host');
   let api = await getApi();
   let json = await JSON.parse(api);
-  res.render('home', { api: json, domain });
+  res.render('home', { api: json, host, port: config.rtmp.port, title: config.isp.title, motto:config.isp.motto });
 });
 
 app.get('/:id', async (req, res) => {
-
+  let host = req.get('host');
   let name    = req.params.id;
   if(await isOnline(name)){
     let check       = await checkStreamKey(name, req.query.key);
@@ -93,9 +72,9 @@ app.get('/:id', async (req, res) => {
     if(check){
       // Check if the user wants mobile/WSS
       if(req.query.method == 'wss'){
-        res.render('wss', { name, domain, port: config.rtmp.port });
+        res.render('wss', { name, port: config.rtmp.port, host, domain: host.split(':')[0] });
       } else {
-        res.render('rtmp', { name, auth: req.query.key, domain, port: config.rtmp.port});
+        res.render('rtmp', { name, auth: req.query.key, port: config.rtmp.port, domain: host.split(':')[0]});
       }
     } else {
       res.render('auth', { name, query: req.query.key })
@@ -112,4 +91,4 @@ app.get('/:id', async (req, res) => {
 
 
 
-app.listen(webport, () => console.log('Express listening on port '+webport));
+app.listen(config.isp.webport, () => console.log('Express listening on port '+config.isp.webport));

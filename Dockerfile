@@ -1,14 +1,11 @@
-FROM node:9
+FROM node:carbon
 
-RUN mkdir /src
+WORKDIR /usr/src/app
 
-WORKDIR /src
+COPY package*.json ./
 
-COPY ./package.json /src/package.json
-COPY ./package-lock.json /src/package-lock.json
-RUN npm install --silent
-
-COPY ./ /src
+RUN npm install
+COPY . .
 
 EXPOSE 6969
 

@@ -5,11 +5,14 @@ html
     link(href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet')
     link(href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet")
     link(href='https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/3.1.6/footable.bootstrap.min.css', rel='stylesheet')
+    link(href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css', rel='stylesheet')
     meta( name="viewport" content="width=device-width, initial-scale=1.0")
-    title Icarus Streaming - Home
-  
+    block title
+    
+    
   body
     div.container
+      block heading
       div.mt-5
         block content
           
@@ -19,5 +22,3 @@ html
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js")
     script
       include js/footable.js
-    
-    

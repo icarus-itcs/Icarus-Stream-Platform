@@ -1,3 +1,8 @@
 $(function() {
-  $('.footable').footable();
+  $('.footable').footable({},function(ft){
+    $('#streamtable').css('visibility', 'visible');
+  });
+
+
+
 });
