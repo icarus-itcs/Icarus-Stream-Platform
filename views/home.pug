@@ -12,26 +12,26 @@ block heading
     div.collapse.mt-2#howtostream
       div.card.card-block
         b OBS (Open Broadcaster Software)
-        ol 
+        ol
           li Open OBS
           li Go to Settings
           li Go to the Stream tab in Settings
           li Select "Custom Streaming Server" in the droplist
-          li Enter this as the URL: 
+          li Enter this as the URL:
             if port == 1935
-              code rtmp://#{host.split(':')[0]}/[name] 
+              code rtmp://#{host.split(':')[0]}/[name]
             else
               code rtmp://#{host.split(':')[0]}:#{port}/[name]
           li (optional) Fill out the stream key if you want a password
           li Enter any name, it was be used to identify your streams
           li Start Stream
         i
-          | Afterwards you'll find your stream location at 
+          | Afterwards you'll find your stream location at
           b http://#{host}/[name]
           |. It will also be shown on this page above. (Spaces are allowed)
 
 block content
-  
+
   table(data-toggle-column='last', style='background-color:#212529 !important; visibility:hidden; ', id='streamtable').footable.table-dark.table.animated.fadeIn
     thead
       tr
@@ -47,8 +47,8 @@ block content
       each apps in api
         if apps
           each stream in apps
-            if stream
-              if stream.publisher.app
+            if stream.publisher !== null
+              
                 tr
                   td
                     a(href='/'+stream.publisher.app).text-white= stream.publisher.app + ' '
@@ -62,6 +62,11 @@ block content
                   td= stream.publisher.video.width + ' x ' + stream.publisher.video.height + ' @ ' + stream.publisher.video.fps + ' fps'
                   td= stream.publisher.audio.codec + ' ('+ stream.publisher.audio.profile +') ' + ' @ ' + stream.publisher.audio.samplerate + ' Hz'
                   td= stream.publisher.connectCreated
+
+
+
+  
+
 
   
 
