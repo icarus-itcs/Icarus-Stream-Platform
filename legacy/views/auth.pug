@@ -1,0 +1,14 @@
+extends layout
+
+block content
+
+  
+  div.row
+    div.col-md-6(style='background-color:white;border-radius: 5px;padding:20px')
+      h2 Password Required
+      if query
+        span.text-danger Invalid Password!
+      form(action='/'+name).mt-3
+        div.form-group
+          input(type='password', placeholder='Password', id='streamkey', name='key').form-control
+      i What's a password? The broadcaster has setup a "stream key", you'll need to get those details in order to view his stream!
