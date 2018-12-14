@@ -20,7 +20,7 @@ var nms = new NMS(config);
 nms.run();
 
 
-// Add static assets and engine for routing/templates
+// Add static assets and engine for routing/template
 app.set('view engine', 'pug');
 app.use(express.static(path.join(__dirname, 'public')));
 
