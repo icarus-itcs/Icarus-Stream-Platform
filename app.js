@@ -4,7 +4,11 @@ const app     = express();
 const path    = require('path');
 const request = require('request-promise');
 const config  = require('./config.json');
-
+const config2 = {
+  rtmp: {
+    ping_timeout: 30
+  }
+};
 
 // Generate a random API key if non-given
 if(!config.apiAuth.apiKey){
@@ -16,7 +20,7 @@ if(!config.apiAuth.apiKey){
 
 
 // Start media server
-var nms = new NMS(config);
+var nms = new NMS(config, config2);
 nms.run();
 
 
