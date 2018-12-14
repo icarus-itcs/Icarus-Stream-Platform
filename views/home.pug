@@ -28,7 +28,7 @@ block heading
         i
           | Afterwards you'll find your stream location at
           b http://#{host}/[name]
-          |. It will also be shown on this page bellow. (Spaces are allowed)
+          |. It will also be shown on this page below. (Spaces are allowed)
 
 block content
 
@@ -47,27 +47,19 @@ block content
       each apps in api
         if apps
           each stream in apps
-            if stream.publisher !== null
+            if stream !== null
+              if stream.publisher !== null
               
-                tr
-                  td
-                    a(href='/'+stream.publisher.app).text-white= stream.publisher.app + ' '
-                    if stream.publisher.stream
-                      i.fas.fa-lock.text-dark
-                  td.text-center
-                    i.fas.fa-users
-                    span= ' ' + Object.keys(stream.subscribers).length
-                  td= stream.publisher.clientId
-                  td= ((stream.publisher.bytes / 1024) / 1024).toFixed(2) + ' MB'
-                  td= stream.publisher.video.width + ' x ' + stream.publisher.video.height + ' @ ' + stream.publisher.video.fps + ' fps'
-                  td= stream.publisher.audio.codec + ' ('+ stream.publisher.audio.profile +') ' + ' @ ' + stream.publisher.audio.samplerate + ' Hz'
-                  td= stream.publisher.connectCreated
-
-
-
-  
-
-
-  
-
-  
+                  tr
+                    td
+                      a(href='/'+stream.publisher.app).text-white= stream.publisher.app + ' '
+                      if stream.publisher.stream
+                        i.fas.fa-lock.text-dark
+                    td.text-center
+                      i.fas.fa-users
+                      span= ' ' + Object.keys(stream.subscribers).length
+                    td= stream.publisher.clientId
+                    td= ((stream.publisher.bytes / 1024) / 1024).toFixed(2) + ' MB'
+                    td= stream.publisher.video.width + ' x ' + stream.publisher.video.height + ' @ ' + stream.publisher.video.fps + ' fps'
+                    td= stream.publisher.audio.codec + ' ('+ stream.publisher.audio.profile +') ' + ' @ ' + stream.publisher.audio.samplerate + ' Hz'
+                    td= stream.publisher.connectCreated
