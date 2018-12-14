@@ -3,58 +3,61 @@ block title
   title= title
 block content
   div.mt-5
-    a(data-toggle="collapse" href="#howtostream" aria-expanded="false" aria-controls="collapseExample").btn.btn-custom1.ml-4.float-right
-      i.fas.fa-question-circle
+    h1(style='color: #d63d3d; font-size:45px !important')= title
+      a(data-toggle="collapse" href="#howtostream" aria-expanded="false" aria-controls="collapseExample").btn.btn-custom1.ml-4.float-right
+        i.fas.fa-question-circle
+    i(style='color: #adadad;')= motto
+    div.collapse.mt-2#howtostream
+      div.card.card-block
+        b OBS (Open Broadcaster Software)
+        ol
+          li Open OBS
+          li Go to Settings
+          li Go to the Stream tab in Settings
+          li Select "Custom Streaming Server" in the droplist
+          li Enter this as the URL:
+            if port == 1935
+              code rtmp://#{host.split(':')[0]}/[name]
+            else
+              code rtmp://#{host.split(':')[0]}:#{port}/[name]
+          li (optional) Fill out the stream key if you want a password
+          li Enter any name, it will be used to identify your stream
+          li Start Stream
+        i
+          | Afterwards you'll find your stream location at
+          b http://#{host}/[name]
+          |. It will also be shown on this page below. (Spaces are allowed)
 
+block content
 
-
-  div(class="plans-section")
-    div(class="plans-main")
-      h1(class="w3l-inner-h-title")= title
-      div.collapse.mt-2#howtostream
-        div.card.card-block
-          b OBS (Open Broadcaster Software)
-          ol
-            li Open OBS
-            li Go to Settings
-            li Go to the Stream tab in Settings
-            li Select "Custom Streaming Server" in the droplist
-            li Enter this as the URL: &nbsp;
-              if port == 1935
-                code rtmp://#{host.split(':')[0]}/[name]
-              else
-                code rtmp://#{host.split(':')[0]}:#{port}/[name]
-            li (optional) Fill out the stream key if you want a password
-            li Enter any name, it will be used to identify your stream
-            li Start Stream
-          i
-            | Afterwards you'll find your stream location at &nbsp;
-            b http://#{host}/[name]
-            |. It will also be shown on this page below. (Spaces are allowed)
-      if api
-        each apps in api
-          if apps
-            each stream in apps
-              if stream !== null
-                if stream.publisher !== null
-                  div(class="price-grid")
-                    div(class="price-block price-block1 agile")
-                      div(class="price-gd-top pric-clr2")
-                        i(class="fas fa-stream", style="color:white; font-size: 2rem;")
-                        h4(style="overflow: hidden;")= stream.publisher.app
-                        h3= stream.publisher.video.codec
-                        p= stream.publisher.video.width + ' x ' + stream.publisher.video.height + ' @ ' + stream.publisher.video.fps + ' fps'
-                        p= ((stream.publisher.bytes / 1024) / 1024).toFixed(2) + ' MB Total'
-                        p= stream.publisher.audio.codec + ' ('+ stream.publisher.audio.profile +') ' + ' @ ' + stream.publisher.audio.samplerate + ' Hz'
-                        p= stream.publisher.connectCreated
-                        h5 
-                          i.fas.fa-users 
-                          span= ' ' + Object.keys(stream.subscribers).length
-                      div(class="price-gd-bottom")
-                        div(class="price-selet pric-sclr2")
-                          a(href='/'+stream.publisher.app, class="w3_agileits_sign_up2 popup-with-zoom-anim ab scroll")
-                            i.fas.fa-play-circle(style="font-size: 4rem;")
-
-  
-
-  
+  table(data-toggle-column='last', style='background-color:#212529 !important; visibility:hidden; ', id='streamtable').footable.table-dark.table.animated.fadeIn
+    thead
+      tr
+        th Name
+        th.text-center Viewers
+        th(data-breakpoints='all', data-title='Client ID')
+        th(data-breakpoints='all', data-title='Data Usage')
+        th(data-breakpoints='all', data-title='Video')
+        th(data-breakpoints='all', data-title='Audio')
+        th(data-breakpoints='all', data-title='Start Time')
+    tbody
+    if api
+      each apps in api
+        if apps
+          each stream in apps
+            if stream !== null
+              if stream.publisher !== null
+              
+                  tr
+                    td
+                      a(href='/'+stream.publisher.app).text-white= stream.publisher.app + ' '
+                      if stream.publisher.stream
+                        i.fas.fa-lock.text-dark
+                    td.text-center
+                      i.fas.fa-users
+                      span= ' ' + Object.keys(stream.subscribers).length
+                    td= stream.publisher.clientId
+                    td= ((stream.publisher.bytes / 1024) / 1024).toFixed(2) + ' MB'
+                    td= stream.publisher.video.width + ' x ' + stream.publisher.video.height + ' @ ' + stream.publisher.video.fps + ' fps'
+                    td= stream.publisher.audio.codec + ' ('+ stream.publisher.audio.profile +') ' + ' @ ' + stream.publisher.audio.samplerate + ' Hz'
+                    td= stream.publisher.connectCreated

@@ -1,4 +1,4 @@
-const NMS     = require('node-media-server');
+const { NodeMediaServer } = require('node-media-server');
 const express = require('express');
 const app     = express();
 const path    = require('path');
@@ -20,7 +20,7 @@ if(!config.apiAuth.apiKey){
 
 
 // Start media server
-var nms = new NMS(config, config2);
+var nms = new NodeMediaServer(config);
 nms.run();
 
 
