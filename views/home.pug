@@ -41,33 +41,25 @@ block content
         th(data-breakpoints='all', data-title='Data Usage')
         th(data-breakpoints='all', data-title='Video')
         th(data-breakpoints='all', data-title='Audio')
-        th(data-breakpoints='all', data-title='Start Time')
+        th(data-breakpoints='all', data-title='Started')
     tbody
     if api
       each apps in api
         if apps
           each stream in apps
             if stream.publisher !== null
-              
-                tr
-                  td
-                    a(href='/'+stream.publisher.app).text-white= stream.publisher.app + ' '
-                    if stream.publisher.stream
-                      i.fas.fa-lock.text-dark
-                  td.text-center
-                    i.fas.fa-users
-                    span= ' ' + Object.keys(stream.subscribers).length
-                  td= stream.publisher.clientId
-                  td= ((stream.publisher.bytes / 1024) / 1024).toFixed(2) + ' MB'
-                  td= stream.publisher.video.width + ' x ' + stream.publisher.video.height + ' @ ' + stream.publisher.video.fps + ' fps'
-                  td= stream.publisher.audio.codec + ' ('+ stream.publisher.audio.profile +') ' + ' @ ' + stream.publisher.audio.samplerate + ' Hz'
-                  td= stream.publisher.connectCreated
+              if stream.publisher.audio !== null
 
-
-
-  
-
-
-  
-
-  
+                  tr
+                    td
+                      a(href='/'+stream.publisher.app).text-white= stream.publisher.app + ' '
+                      if stream.publisher.stream
+                        i.fas.fa-lock.text-dark
+                    td.text-center
+                      i.fas.fa-users
+                      span= ' ' + Object.keys(stream.subscribers).length
+                    td= stream.publisher.clientId
+                    td= ((stream.publisher.bytes / 1024) / 1024).toFixed(2) + ' MB'
+                    td= stream.publisher.video.width + ' x ' + stream.publisher.video.height + ' @ ' + stream.publisher.video.fps + ' fps'
+                    td= stream.publisher.audio.codec + ' ('+ stream.publisher.audio.profile +') ' + ' @ ' + stream.publisher.audio.samplerate + ' Hz'
+                    td= moment(stream.publisher.connectCreated).startOf('h:mm:ss').fromNow()
