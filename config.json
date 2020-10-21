@@ -7,8 +7,8 @@
  "rtmp": {
    "port": 1935,
    "chunk_size": 4096,
-   "gop_cache": false,
-   "ping": 60,
+   "gop_cache": true,
+   "ping": 3,
    "ping_timeout": 30
  },
  "http": {
