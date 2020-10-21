@@ -8,7 +8,7 @@
    "port": 1935,
    "chunk_size": 4096,
    "gop_cache": true,
-   "ping": 3,
+   "ping": 60,
    "ping_timeout": 30
  },
  "http": {
