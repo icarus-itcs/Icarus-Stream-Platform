@@ -4,6 +4,7 @@ const app     = express();
 const path    = require('path');
 const request = require('request-promise');
 const config  = require('./config.json');
+const moment = require('moment');
 
 
 // Generate a random API key if non-given
@@ -59,7 +60,7 @@ app.get('/', async (req, res) => {
   let host = req.get('host');
   let api = await getApi();
   let json = await JSON.parse(api);
-  res.render('home', { api: json, host, port: config.rtmp.port, title: config.isp.title, motto:config.isp.motto });
+  res.render('home', { api: json, host, moment, port: config.rtmp.port, title: config.isp.title, motto:config.isp.motto });
 });
 
 app.get('/:id', async (req, res) => {
