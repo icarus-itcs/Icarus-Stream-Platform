@@ -17,7 +17,7 @@
     "pug": "^2.0.4",
     "request": "^2.88.0",
     "request-promise": "^4.2.6",
-    "socket.io": "^2.2.0",
+    "socket.io": "^2.4.0",
     "ws": "^4.1.0"
   }
 }
