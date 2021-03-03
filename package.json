@@ -14,7 +14,7 @@
     "moment": "^2.29.1",
     "net": "^1.0.2",
     "node-media-server": "^1.4.7",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.6",
     "socket.io": "^2.2.0",
