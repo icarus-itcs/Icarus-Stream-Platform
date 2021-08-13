@@ -9,7 +9,7 @@ html
           var videoElement = document.getElementById('videoElement');
           var flvPlayer = flvjs.createPlayer({
               type: 'flv',
-              url: 'wss://rtmp.app:8443/#{name}/#{auth}.flv'
+              url: 'ws://'+domain+':8000/#{name}/#{auth}.flv'
           });
           flvPlayer.attachMediaElement(videoElement);
           flvPlayer.load();
