@@ -1,4 +1,4 @@
-const { NodeMediaServer } = require('node-media-server');
+const NodeMediaServer = require('node-media-server');
 const express = require('express');
 const app     = express();
 const path    = require('path');
@@ -72,10 +72,10 @@ app.get('/:id', async (req, res) => {
     // Ensure the user has the stream key
     if(check){
       // Check if the user wants mobile/WSS
-      if(req.query.method == 'wss'){
-        res.render('wss', { name, port: config.rtmp.port, host, domain: host.split(':')[0] });
-      } else {
+      if(req.query.method == 'rtmp'){
         res.render('rtmp', { name, auth: req.query.key, port: config.rtmp.port, domain: host.split(':')[0]});
+      } else {
+        res.render('wss', { name, port: config.rtmp.port, host, domain: host.split(':')[0] });
       }
     } else {
       res.render('auth', { name, query: req.query.key })
