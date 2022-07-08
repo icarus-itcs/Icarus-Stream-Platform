@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "moment": "^2.29.1",
+    "moment": "^2.29.4",
     "net": "^1.0.2",
     "node-media-server": "^1.4.7",
     "pug": "^2.0.4",
