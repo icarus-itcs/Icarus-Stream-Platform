@@ -10,7 +10,7 @@
   "author": "Miles Collier (Icarus)",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "moment": "^2.29.1",
     "net": "^1.0.2",
     "node-media-server": "^1.4.7",
